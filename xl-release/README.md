@@ -2,17 +2,13 @@
 
 ## XL Release directory structure 
 
-The *xl-release-7.2.0-server.zip* file contains the entire XL release installation including all the configuration files and the custom extensions TEK implemented for BCBSA. 
+The *xl-release-7.2.0-server files.zip* file contains the XL release configuration and repository/archive files including all the custom extensions TEK implemented for BCBSA. 
 
-The following directory structure exists in the installation directory: 
+The following directory structure exists in the .zip file: 
 
  - **archive**: Embedded archive / reporting database 
- - **bin**: Server startup scripts 
  - **conf**: Configuration files 
- - **ext**: XL Release extensions implemented for BCBSA 
- - **hotfix**: Contains hotfixes that correct issues with the server software 
- - **lib**: Binary libraries 
- - **log**: Server log files 
+ - **ext**: XL Release extensions implemented for BCBSA  
  - **plugins**: XL Release extensions that are packaged as plugins 
  - **repository**: Embedded XL Release database 
 
