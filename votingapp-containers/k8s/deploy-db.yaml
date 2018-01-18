@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  template:
+    metadata:
+      labels:
+        app: votingapp
+        component: db
+    spec:  
+      containers:
+      - name: db
+        image: postgres:9.4
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+          protocol: TCP

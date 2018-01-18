@@ -1,0 +1,44 @@
+version: "2"
+
+networks: 
+  voting:
+      driver: overlay
+
+services:
+  vote:
+    image: tgscloudevops.azurecr.io/vote
+    ports:
+      - "8181:8181"
+    networks:
+      - voting
+
+  result:
+    image: tgscloudevops.azurecr.io/result
+    ports:
+      - "8080:8080"
+      - "5858:5858"
+    networks:
+      - voting
+
+  worker:
+    image: tgscloudevops.azurecr.io/worker
+    networks:
+      - voting
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports: ["6379"]
+    networks:
+      - voting
+
+  db:
+    image: postgres:9.4
+    container_name: db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - voting
+
+volumes:
+  db-data:

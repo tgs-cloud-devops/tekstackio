@@ -1,0 +1,46 @@
+env:
+  global:
+  - VOTE_REPO=kurtcrowley/tek-voting-vote
+  - RESULT_REPO=kurtcrowley/tek-voting-result
+  - WORKER_REPO=kurtcrowley/tek-voting-worker
+  - COMMIT=${TRAVIS_COMMIT::8}
+
+
+sudo: required
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: VOTE
+      script: 
+      - cd vote
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+      - docker build -f Dockerfile -t $VOTE_REPO:$COMMIT .
+      - docker tag $VOTE_REPO:$COMMIT $VOTE_REPO:$TAG
+      - docker tag $VOTE_REPO:$COMMIT $VOTE_REPO:travis-$TRAVIS_BUILD_NUMBER
+      - docker push $VOTE_REPO
+    - stage: RESULT
+      script: 
+      - cd result
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+      - docker build -f Dockerfile -t $RESULT_REPO:$COMMIT .
+      - docker tag $RESULT_REPO:$COMMIT $RESULT_REPO:$TAG
+      - docker tag $RESULT_REPO:$COMMIT $RESULT_REPO:travis-$TRAVIS_BUILD_NUMBER
+      - docker push $RESULT_REPO
+    - stage: WORKER
+      script: 
+      - cd worker
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+      - docker build -f Dockerfile -t $WORKER_REPO:$COMMIT .
+      - docker tag $WORKER_REPO:$COMMIT $WORKER_REPO:$TAG
+      - docker tag $WORKER_REPO:$COMMIT $WORKER_REPO:travis-$TRAVIS_BUILD_NUMBER
+      - docker push $WORKER_REPO
+    - stage: XL RELEASE
+      script:
+      - cd xlr
+      - sh deploy_votingapp.sh $XLR_CREDENTIALS $XLR_VOTE_DEPLOY_PATH $VOTE_REPO:travis-$TRAVIS_BUILD_NUMBER
