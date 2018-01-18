@@ -3,6 +3,7 @@ env:
   - VOTE_REPO=kurtcrowley/votingapp-redis
   - COMMIT=${TRAVIS_COMMIT::8}
 
+
 sudo: required
 
 services:
