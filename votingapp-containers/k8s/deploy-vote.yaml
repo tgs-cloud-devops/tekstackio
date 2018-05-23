@@ -11,7 +11,7 @@ spec:
     spec:  
       containers:
       - name: vote
-        image: kurtcrowley/tek-voting-vote:latest
+        image: tekdemo.azurecr.io/vote:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
