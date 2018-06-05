@@ -1,0 +1,189 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_sql_0_name": {
+            "value": null
+        },
+        "virtualMachines_sql_1_name": {
+            "value": null
+        },
+        "virtualMachines_sql_w_name": {
+            "value": null
+        },
+        "virtualMachines_ad_bdc_name": {
+            "value": null
+        },
+        "virtualMachines_ad_pdc_name": {
+            "value": null
+        },
+        "publicIPAddresses_ip01_name": {
+            "value": null
+        },
+        "publicIPAddresses_rdpIP_name": {
+            "value": null
+        },
+        "storageAccounts_tgsstrg3_name": {
+            "value": null
+        },
+        "storageAccounts_tgsstrg4_name": {
+            "value": null
+        },
+        "storageAccounts_tgsstrg2_name": {
+            "value": null
+        },
+        "storageAccounts_tgsstrg1_name": {
+            "value": null
+        },
+        "virtualMachines_sps_app_0_name": {
+            "value": null
+        },
+        "virtualMachines_sps_app_1_name": {
+            "value": null
+        },
+        "virtualMachines_sps_web_0_name": {
+            "value": null
+        },
+        "virtualMachines_sps_web_1_name": {
+            "value": null
+        },
+        "virtualNetworks_spfarmvnet_name": {
+            "value": null
+        },
+        "networkInterfaces_sql_0_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_sql_1_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_sql_w_nic_name": {
+            "value": null
+        },
+        "publicIPAddresses_ip01admin_name": {
+            "value": null
+        },
+        "networkInterfaces_ad_bdc_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_ad_pdc_nic_name": {
+            "value": null
+        },
+        "loadBalancers_rdpLoadBalancer_name": {
+            "value": null
+        },
+        "loadBalancers_sqlLoadBalancer_name": {
+            "value": null
+        },
+        "loadBalancers_spCALoadBalancer_name": {
+            "value": null
+        },
+        "loadBalancers_spWebLoadBalancer_name": {
+            "value": null
+        },
+        "networkInterfaces_sps_app_0_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_sps_app_1_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_sps_web_0_nic_name": {
+            "value": null
+        },
+        "networkInterfaces_sps_web_1_nic_name": {
+            "value": null
+        },
+        "availabilitySets_adAvailabilitySet_name": {
+            "value": null
+        },
+        "availabilitySets_sqlAvailabilitySet_name": {
+            "value": null
+        },
+        "availabilitySets_spAppAvailabilitySet_name": {
+            "value": null
+        },
+        "availabilitySets_spWebAvailabilitySet_name": {
+            "value": null
+        },
+        "extensions_CreateBDC_name": {
+            "value": null
+        },
+        "extensions_SQLAOSetup_name": {
+            "value": null
+        },
+        "subnets_sqlSubnet_name": {
+            "value": null
+        },
+        "extensions_CreateCluster_name": {
+            "value": null
+        },
+        "subnets_spWebSubnet_name": {
+            "value": null
+        },
+        "subnets_spAppSubnet_name": {
+            "value": null
+        },
+        "subnets_staticSubnet_name": {
+            "value": null
+        },
+        "inboundNatRules_RDP_name": {
+            "value": null
+        },
+        "inboundNatRules_spCANAT_name": {
+            "value": null
+        },
+        "extensions_CreateFileShareWitness_name": {
+            "value": null
+        },
+        "extensions_InstallDomainController_name": {
+            "value": null
+        },
+        "extensions_ConfigureSPAppServer_name": {
+            "value": null
+        },
+        "extensions_FixPSModulePathIssue_name": {
+            "value": null
+        },
+        "extensions_ConfigureSPAppServer_name_1": {
+            "value": null
+        },
+        "extensions_FixPSModulePathIssue_name_1": {
+            "value": null
+        },
+        "extensions_ConfigureSPWebServer_name": {
+            "value": null
+        },
+        "extensions_FixPSModulePathIssue_name_2": {
+            "value": null
+        },
+        "extensions_ConfigureSPWebServer_name_1": {
+            "value": null
+        },
+        "extensions_FixPSModulePathIssue_name_3": {
+            "value": null
+        },
+        "loadBalancers_rdpLoadBalancer_id": {
+            "value": null
+        },
+        "loadBalancers_spCALoadBalancer_id": {
+            "value": null
+        },
+        "loadBalancers_spWebLoadBalancer_id": {
+            "value": null
+        },
+        "loadBalancers_spWebLoadBalancer_id_1": {
+            "value": null
+        },
+        "loadBalancers_spWebLoadBalancer_id_2": {
+            "value": null
+        },
+        "loadBalancers_sqlLoadBalancer_id": {
+            "value": null
+        },
+        "loadBalancers_sqlLoadBalancer_id_1": {
+            "value": null
+        },
+        "networkInterfaces_ad_bdc_nic_id": {
+            "value": null
+        }
+    }
+}

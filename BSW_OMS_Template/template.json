@@ -1,0 +1,2530 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_sql_0_name": {
+            "defaultValue": "sql-0",
+            "type": "String"
+        },
+        "virtualMachines_sql_1_name": {
+            "defaultValue": "sql-1",
+            "type": "String"
+        },
+        "virtualMachines_sql_w_name": {
+            "defaultValue": "sql-w",
+            "type": "String"
+        },
+        "virtualMachines_ad_bdc_name": {
+            "defaultValue": "ad-bdc",
+            "type": "String"
+        },
+        "virtualMachines_ad_pdc_name": {
+            "defaultValue": "ad-pdc",
+            "type": "String"
+        },
+        "publicIPAddresses_ip01_name": {
+            "defaultValue": "ip01",
+            "type": "String"
+        },
+        "publicIPAddresses_rdpIP_name": {
+            "defaultValue": "rdpIP",
+            "type": "String"
+        },
+        "storageAccounts_tgsstrg3_name": {
+            "defaultValue": "tgsstrg3",
+            "type": "String"
+        },
+        "storageAccounts_tgsstrg4_name": {
+            "defaultValue": "tgsstrg4",
+            "type": "String"
+        },
+        "storageAccounts_tgsstrg2_name": {
+            "defaultValue": "tgsstrg2",
+            "type": "String"
+        },
+        "storageAccounts_tgsstrg1_name": {
+            "defaultValue": "tgsstrg1",
+            "type": "String"
+        },
+        "virtualMachines_sps_app_0_name": {
+            "defaultValue": "sps-app-0",
+            "type": "String"
+        },
+        "virtualMachines_sps_app_1_name": {
+            "defaultValue": "sps-app-1",
+            "type": "String"
+        },
+        "virtualMachines_sps_web_0_name": {
+            "defaultValue": "sps-web-0",
+            "type": "String"
+        },
+        "virtualMachines_sps_web_1_name": {
+            "defaultValue": "sps-web-1",
+            "type": "String"
+        },
+        "virtualNetworks_spfarmvnet_name": {
+            "defaultValue": "spfarmvnet",
+            "type": "String"
+        },
+        "networkInterfaces_sql_0_nic_name": {
+            "defaultValue": "sql-0-nic",
+            "type": "String"
+        },
+        "networkInterfaces_sql_1_nic_name": {
+            "defaultValue": "sql-1-nic",
+            "type": "String"
+        },
+        "networkInterfaces_sql_w_nic_name": {
+            "defaultValue": "sql-w-nic",
+            "type": "String"
+        },
+        "publicIPAddresses_ip01admin_name": {
+            "defaultValue": "ip01admin",
+            "type": "String"
+        },
+        "networkInterfaces_ad_bdc_nic_name": {
+            "defaultValue": "ad-bdc-nic",
+            "type": "String"
+        },
+        "networkInterfaces_ad_pdc_nic_name": {
+            "defaultValue": "ad-pdc-nic",
+            "type": "String"
+        },
+        "loadBalancers_rdpLoadBalancer_name": {
+            "defaultValue": "rdpLoadBalancer",
+            "type": "String"
+        },
+        "loadBalancers_sqlLoadBalancer_name": {
+            "defaultValue": "sqlLoadBalancer",
+            "type": "String"
+        },
+        "loadBalancers_spCALoadBalancer_name": {
+            "defaultValue": "spCALoadBalancer",
+            "type": "String"
+        },
+        "loadBalancers_spWebLoadBalancer_name": {
+            "defaultValue": "spWebLoadBalancer",
+            "type": "String"
+        },
+        "networkInterfaces_sps_app_0_nic_name": {
+            "defaultValue": "sps-app-0-nic",
+            "type": "String"
+        },
+        "networkInterfaces_sps_app_1_nic_name": {
+            "defaultValue": "sps-app-1-nic",
+            "type": "String"
+        },
+        "networkInterfaces_sps_web_0_nic_name": {
+            "defaultValue": "sps-web-0-nic",
+            "type": "String"
+        },
+        "networkInterfaces_sps_web_1_nic_name": {
+            "defaultValue": "sps-web-1-nic",
+            "type": "String"
+        },
+        "availabilitySets_adAvailabilitySet_name": {
+            "defaultValue": "adAvailabilitySet",
+            "type": "String"
+        },
+        "availabilitySets_sqlAvailabilitySet_name": {
+            "defaultValue": "sqlAvailabilitySet",
+            "type": "String"
+        },
+        "availabilitySets_spAppAvailabilitySet_name": {
+            "defaultValue": "spAppAvailabilitySet",
+            "type": "String"
+        },
+        "availabilitySets_spWebAvailabilitySet_name": {
+            "defaultValue": "spWebAvailabilitySet",
+            "type": "String"
+        },
+        "extensions_CreateBDC_name": {
+            "defaultValue": "CreateBDC",
+            "type": "String"
+        },
+        "extensions_SQLAOSetup_name": {
+            "defaultValue": "SQLAOSetup",
+            "type": "String"
+        },
+        "subnets_sqlSubnet_name": {
+            "defaultValue": "sqlSubnet",
+            "type": "String"
+        },
+        "extensions_CreateCluster_name": {
+            "defaultValue": "CreateCluster",
+            "type": "String"
+        },
+        "subnets_spWebSubnet_name": {
+            "defaultValue": "spWebSubnet",
+            "type": "String"
+        },
+        "subnets_spAppSubnet_name": {
+            "defaultValue": "spAppSubnet",
+            "type": "String"
+        },
+        "subnets_staticSubnet_name": {
+            "defaultValue": "staticSubnet",
+            "type": "String"
+        },
+        "inboundNatRules_RDP_name": {
+            "defaultValue": "RDP",
+            "type": "String"
+        },
+        "inboundNatRules_spCANAT_name": {
+            "defaultValue": "spCANAT",
+            "type": "String"
+        },
+        "extensions_CreateFileShareWitness_name": {
+            "defaultValue": "CreateFileShareWitness",
+            "type": "String"
+        },
+        "extensions_InstallDomainController_name": {
+            "defaultValue": "InstallDomainController",
+            "type": "String"
+        },
+        "extensions_ConfigureSPAppServer_name": {
+            "defaultValue": "ConfigureSPAppServer",
+            "type": "String"
+        },
+        "extensions_FixPSModulePathIssue_name": {
+            "defaultValue": "FixPSModulePathIssue",
+            "type": "String"
+        },
+        "extensions_ConfigureSPAppServer_name_1": {
+            "defaultValue": "ConfigureSPAppServer",
+            "type": "String"
+        },
+        "extensions_FixPSModulePathIssue_name_1": {
+            "defaultValue": "FixPSModulePathIssue",
+            "type": "String"
+        },
+        "extensions_ConfigureSPWebServer_name": {
+            "defaultValue": "ConfigureSPWebServer",
+            "type": "String"
+        },
+        "extensions_FixPSModulePathIssue_name_2": {
+            "defaultValue": "FixPSModulePathIssue",
+            "type": "String"
+        },
+        "extensions_ConfigureSPWebServer_name_1": {
+            "defaultValue": "ConfigureSPWebServer",
+            "type": "String"
+        },
+        "extensions_FixPSModulePathIssue_name_3": {
+            "defaultValue": "FixPSModulePathIssue",
+            "type": "String"
+        },
+        "loadBalancers_rdpLoadBalancer_id": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/rdpLoadBalancer/frontendIPConfigurations/rdpLBFE",
+            "type": "String"
+        },
+        "loadBalancers_spCALoadBalancer_id": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spCALoadBalancer/frontendIPConfigurations/spCALBFE",
+            "type": "String"
+        },
+        "loadBalancers_spWebLoadBalancer_id": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spWebLoadBalancer/frontendIPConfigurations/spWebLBFE",
+            "type": "String"
+        },
+        "loadBalancers_spWebLoadBalancer_id_1": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spWebLoadBalancer/backendAddressPools/spWebLBBE",
+            "type": "String"
+        },
+        "loadBalancers_spWebLoadBalancer_id_2": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spWebLoadBalancer/probes/spWebProbe",
+            "type": "String"
+        },
+        "loadBalancers_sqlLoadBalancer_id": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/sqlLoadBalancer/frontendIPConfigurations/sqlLBFE",
+            "type": "String"
+        },
+        "loadBalancers_sqlLoadBalancer_id_1": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/sqlLoadBalancer/probes/SQLAlwaysOnEndPointProbe",
+            "type": "String"
+        },
+        "networkInterfaces_ad_bdc_nic_id": {
+            "defaultValue": "/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm_nonha/providers/Microsoft.Network/networkSecurityGroups/rdp",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/availabilitySets/adAvailabilitySet'.",
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Classic"
+            },
+            "name": "[parameters('availabilitySets_adAvailabilitySet_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 3,
+                "virtualMachines": [
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_bdc_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_pdc_name'))]"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_bdc_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_pdc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/availabilitySets/spAppAvailabilitySet'.",
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Classic"
+            },
+            "name": "[parameters('availabilitySets_spAppAvailabilitySet_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 3,
+                "virtualMachines": [
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/availabilitySets/spWebAvailabilitySet'.",
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Classic"
+            },
+            "name": "[parameters('availabilitySets_spWebAvailabilitySet_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 3,
+                "virtualMachines": [
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/availabilitySets/sqlAvailabilitySet'.",
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Classic"
+            },
+            "name": "[parameters('availabilitySets_sqlAvailabilitySet_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 3,
+                "platformFaultDomainCount": 3,
+                "virtualMachines": [
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_0_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_1_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_w_name'))]"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_0_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_1_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_w_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/ad-bdc'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_ad_bdc_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_adAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg1_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ad_bdc_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_ad_bdc_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg1_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ad_bdc_name'),'data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ad_bdc_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad_bdc_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_adAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg1_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad_bdc_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/ad-pdc'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_ad_pdc_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_adAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg1_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ad_pdc_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_ad_pdc_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg1_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_ad_pdc_name'),'data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ad_pdc_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad_pdc_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_adAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg1_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad_pdc_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-0'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sps_app_0_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spAppAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSharePoint",
+                        "offer": "MicrosoftSharePointServer",
+                        "sku": "2013",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_app_0_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sps_app_0_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_app_0_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sps_app_0_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_app_0_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spAppAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg3_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_app_0_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-1'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sps_app_1_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spAppAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSharePoint",
+                        "offer": "MicrosoftSharePointServer",
+                        "sku": "2013",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_app_1_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sps_app_1_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_app_1_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sps_app_1_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_app_1_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spAppAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg3_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_app_1_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-0'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sps_web_0_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spWebAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSharePoint",
+                        "offer": "MicrosoftSharePointServer",
+                        "sku": "2013",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_web_0_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sps_web_0_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_web_0_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sps_web_0_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_web_0_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spWebAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg3_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_web_0_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-1'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sps_web_1_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spWebAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSharePoint",
+                        "offer": "MicrosoftSharePointServer",
+                        "sku": "2013",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_web_1_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sps_web_1_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg3_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sps_web_1_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sps_web_1_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_web_1_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_spWebAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg3_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sps_web_1_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-0'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sql_0_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSQLServer",
+                        "offer": "SQL2014SP2-WS2012R2",
+                        "sku": "Enterprise",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_0_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sql_0_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_0_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 1000
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[concat(parameters('virtualMachines_sql_0_name'),'-log-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_0_name'),'-log.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 1000
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sql_0_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_0_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg2_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_0_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-1'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sql_1_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftSQLServer",
+                        "offer": "SQL2014SP2-WS2012R2",
+                        "sku": "Enterprise",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_1_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sql_1_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_1_name'),'-Data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 1000
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[concat(parameters('virtualMachines_sql_1_name'),'-log-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_1_name'),'-log.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 1000
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sql_1_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_1_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg2_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_1_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-w'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_sql_w_name')]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_w_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 127
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_sql_w_name'),'-data-disk1')]",
+                            "createOption": "Empty",
+                            "vhd": {
+                                "uri": "[concat('http', '://', parameters('storageAccounts_tgsstrg2_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_sql_w_name'),'-data-1.vhd'))]"
+                            },
+                            "caching": "None",
+                            "diskSizeGB": 128
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_sql_w_name')]",
+                    "adminUsername": "tgs_admin",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_w_nic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_tgsstrg4_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_sqlAvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg2_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sql_w_nic_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_tgsstrg4_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/rdpLoadBalancer'.",
+            "type": "Microsoft.Network/loadBalancers",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('loadBalancers_rdpLoadBalancer_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "a3ff6675-f3e7-492c-b7fa-2a349a662d4d",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "rdpLBFE",
+                        "etag": "W/\"6ee03486-08e1-453c-bcf5-47644dfc8288\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_rdpIP_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "adLBBE",
+                        "etag": "W/\"6ee03486-08e1-453c-bcf5-47644dfc8288\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [],
+                "probes": [],
+                "inboundNatRules": [
+                    {
+                        "name": "RDP",
+                        "etag": "W/\"6ee03486-08e1-453c-bcf5-47644dfc8288\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_rdpLoadBalancer_id')]"
+                            },
+                            "frontendPort": 3389,
+                            "backendPort": 3389,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    }
+                ],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_rdpIP_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spCALoadBalancer'.",
+            "type": "Microsoft.Network/loadBalancers",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('loadBalancers_spCALoadBalancer_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "0fd1456c-6d94-43b1-a26b-495fd0e5884f",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "spCALBFE",
+                        "etag": "W/\"825647b0-6f5d-4789-8c9e-439cfda43666\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ip01admin_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "spCALBBE",
+                        "etag": "W/\"825647b0-6f5d-4789-8c9e-439cfda43666\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [],
+                "probes": [],
+                "inboundNatRules": [
+                    {
+                        "name": "spCANAT",
+                        "etag": "W/\"825647b0-6f5d-4789-8c9e-439cfda43666\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_spCALoadBalancer_id')]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 80,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    }
+                ],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ip01admin_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spWebLoadBalancer'.",
+            "type": "Microsoft.Network/loadBalancers",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('loadBalancers_spWebLoadBalancer_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "b6d94a81-55cf-4291-9a2b-f3b94c855165",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "spWebLBFE",
+                        "etag": "W/\"542c34f4-9ee4-4499-a224-95597867177e\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ip01_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "spWebLBBE",
+                        "etag": "W/\"542c34f4-9ee4-4499-a224-95597867177e\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "spWeb",
+                        "etag": "W/\"542c34f4-9ee4-4499-a224-95597867177e\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_spWebLoadBalancer_id')]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 80,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[parameters('loadBalancers_spWebLoadBalancer_id_1')]"
+                            },
+                            "probe": {
+                                "id": "[parameters('loadBalancers_spWebLoadBalancer_id_2')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "spWebProbe",
+                        "etag": "W/\"542c34f4-9ee4-4499-a224-95597867177e\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Http",
+                            "port": 8088,
+                            "requestPath": "/iisstart.htm",
+                            "intervalInSeconds": 15,
+                            "numberOfProbes": 5
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ip01_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/sqlLoadBalancer'.",
+            "type": "Microsoft.Network/loadBalancers",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('loadBalancers_sqlLoadBalancer_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "24584692-df78-471b-828c-91ffb1ca1cbf",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "sqlLBFE",
+                        "etag": "W/\"35331464-ec1f-4c5c-b82b-fbf4b179e7ae\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.6",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "sqlLBBE",
+                        "etag": "W/\"35331464-ec1f-4c5c-b82b-fbf4b179e7ae\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "SQLAlwaysOnEndPointListener",
+                        "etag": "W/\"35331464-ec1f-4c5c-b82b-fbf4b179e7ae\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_sqlLoadBalancer_id')]"
+                            },
+                            "frontendPort": 1433,
+                            "backendPort": 1433,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "probe": {
+                                "id": "[parameters('loadBalancers_sqlLoadBalancer_id_1')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "SQLAlwaysOnEndPointProbe",
+                        "etag": "W/\"35331464-ec1f-4c5c-b82b-fbf4b179e7ae\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 59999,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/ad-bdc-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_ad_bdc_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "3a123e95-b3aa-464b-aadf-2bb6defa08fd",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"f8011a4c-7fd6-4548-9e46-6ca0b0cc25aa\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.5",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-F8-F9",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkInterfaces_ad_bdc_nic_id')]"
+                },
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_bdc_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_bdc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/ad-pdc-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_ad_pdc_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "6fa23ddc-11c8-42d5-a3d4-5500e52aba36",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"9e681860-c375-491c-84af-82d9ce117406\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.4",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_rdpLoadBalancer_name')), '/backendAddressPools/adLBBE')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules', parameters('loadBalancers_rdpLoadBalancer_name'), parameters('inboundNatRules_RDP_name'))]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-FC-C1",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_pdc_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_staticSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_rdpLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules', parameters('loadBalancers_rdpLoadBalancer_name'), parameters('inboundNatRules_RDP_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_pdc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sps-app-0-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sps_app_0_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "d933e152-26e5-4195-a307-bd28d3dbff3f",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"9b2c3ebe-1f73-4d98-aa33-bac7c8f1ef7c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.3.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spAppSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spCALoadBalancer_name')), '/backendAddressPools/spCALBBE')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules', parameters('loadBalancers_spCALoadBalancer_name'), parameters('inboundNatRules_spCANAT_name'))]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-FE-C7",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spAppSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spCALoadBalancer_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules', parameters('loadBalancers_spCALoadBalancer_name'), parameters('inboundNatRules_spCANAT_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sps-app-1-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sps_app_1_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "80de2239-54fa-4104-a755-774d800ac41a",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"1e21c0fe-baff-4a2c-afcd-83ee27b66a52\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.3.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spAppSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-F4-DD",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spAppSubnet_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sps-web-0-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sps_web_0_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "dd823d99-237e-40d2-8ab4-9d364f39516c",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"7e2e0a0c-6b04-4911-870a-f3f11db02a43\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.2.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spWebSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spWebLoadBalancer_name')), '/backendAddressPools/spWebLBBE')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-F1-4B",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spWebSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spWebLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sps-web-1-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sps_web_1_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "2be279a5-5462-41c8-877e-47ae22d9b123",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"c69a3f6c-5901-4350-8b86-5620516eb952\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.2.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spWebSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spWebLoadBalancer_name')), '/backendAddressPools/spWebLBBE')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-FF-2F",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_spWebSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spWebLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sql-0-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sql_0_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "049a175b-d3e7-4727-8cd3-d055e79a568c",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"671bc122-f23d-4a31-a9f9-176c9c6fcd61\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.1.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sqlLoadBalancer_name')), '/backendAddressPools/sqlLBBE')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-F6-52",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_0_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sqlLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sql-1-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sql_1_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "72ee7469-985e-48dc-b7aa-3748446b94e7",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"78a0528a-bf08-4629-8916-c83c2a8e9d4f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.1.6",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sqlLoadBalancer_name')), '/backendAddressPools/sqlLBBE')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-F4-5B",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_1_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_sqlLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/networkInterfaces/sql-w-nic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_sql_w_nic_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "1b842d90-21c0-4e96-92b3-d45de1f2254f",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"5cdddd74-c45f-4082-9068-c3cdb0b6d2da\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.1.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "l3cw31o1ypgufc0inkmxkbgdba.gx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-94-FF-65",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_w_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_spfarmvnet_name'), parameters('subnets_sqlSubnet_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_w_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/publicIPAddresses/ip01'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('publicIPAddresses_ip01_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "acca5442-fc74-4527-b3d6-4e310f53a0ce",
+                "ipAddress": "40.113.236.240",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "spsfarm",
+                    "fqdn": "spsfarm.centralus.cloudapp.azure.com"
+                },
+                "ipTags": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/publicIPAddresses/ip01admin'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('publicIPAddresses_ip01admin_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "5aa3963d-3fd1-48ca-a4e2-f0326ca0c7c7",
+                "ipAddress": "40.113.233.197",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "spsfarmadmin",
+                    "fqdn": "spsfarmadmin.centralus.cloudapp.azure.com"
+                },
+                "ipTags": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/publicIPAddresses/rdpIP'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "name": "[parameters('publicIPAddresses_rdpIP_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "e02557ad-c265-4961-842d-6b2db5b4c07d",
+                "ipAddress": "40.113.232.210",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/virtualNetworks/spfarmvnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_spfarmvnet_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "ed6e455f-c3db-42cd-8b48-6a997504c308",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "10.0.0.4",
+                        "10.0.0.5"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "staticSubnet",
+                        "etag": "W/\"834cd97a-0cde-431b-bfaa-eaf5b292674a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "sqlSubnet",
+                        "etag": "W/\"834cd97a-0cde-431b-bfaa-eaf5b292674a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.1.0/24"
+                        }
+                    },
+                    {
+                        "name": "spWebSubnet",
+                        "etag": "W/\"834cd97a-0cde-431b-bfaa-eaf5b292674a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.2.0/24"
+                        }
+                    },
+                    {
+                        "name": "spAppSubnet",
+                        "etag": "W/\"834cd97a-0cde-431b-bfaa-eaf5b292674a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.3.0/24"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Storage/storageAccounts/tgsstrg3'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_tgsstrg3_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "centralus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Storage/storageAccounts/tgsstrg4'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_tgsstrg4_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "centralus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Storage/storageAccounts/tgsstrg2'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_tgsstrg2_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "centralus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Storage/storageAccounts/tgsstrg1'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_tgsstrg1_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "centralus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/ad-bdc/extensions/CreateBDC'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_ad_bdc_name'), '/', parameters('extensions_CreateBDC_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": false,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/ConfigureADBDC.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "ConfigureADBDC.ps1\\ConfigureADBDC",
+                    "properties": {
+                        "domainName": "bsw.com",
+                        "adminCreds": {
+                            "userName": "tgs_admin",
+                            "password": "privateSettingsRef:adminPassword"
+                        }
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_bdc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/ad-pdc/extensions/InstallDomainController'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_ad_pdc_name'), '/', parameters('extensions_InstallDomainController_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/CreateADPDC.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "CreateADPDC.ps1\\CreateADPDC",
+                    "properties": {
+                        "domainName": "bsw.com",
+                        "adminCreds": {
+                            "userName": "tgs_admin",
+                            "password": "PrivateSettingsRef:adminPassword"
+                        }
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad_pdc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-0/extensions/ConfigureSPAppServer'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_app_0_name'), '/', parameters('extensions_ConfigureSPAppServer_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/PrepareSharePointServerHA.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA",
+                    "properties": {
+                        "DNSServer": "10.0.0.4",
+                        "DomainName": "bsw.com"
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-0/extensions/FixPSModulePathIssue'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_app_0_name'), '/', parameters('extensions_FixPSModulePathIssue_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.8",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted  -Command \"& {$modulePath=[Environment]::GetEnvironmentVariable('PSModulePath','Machine');$pathsToRemove=@('C:\\Program Files\\WindowsPowerShell\\Modules\\','C:\\Program Files\\WindowsPowerShell\\Modules');if ($modulePath) {$paths=@();$newModulePath='';foreach ($path in $modulePath.Split(';')){$path=$path.Trim('\\');if (!$paths.Contains($path)){if (!$pathsToRemove.Contains($path)) { $paths+=$path;$newModulePath+=$path;$newModulePath+='\\;';} }}[Environment]::SetEnvironmentVariable('PSModulePath',$newModulePath.Trim(';'),'Machine' );}}\""
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-1/extensions/ConfigureSPAppServer'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_app_1_name'), '/', parameters('extensions_ConfigureSPAppServer_name_1'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/PrepareSharePointServerHA.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA",
+                    "properties": {
+                        "DNSServer": "10.0.0.4",
+                        "DomainName": "bsw.com"
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-app-1/extensions/FixPSModulePathIssue'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_app_1_name'), '/', parameters('extensions_FixPSModulePathIssue_name_1'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.8",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted  -Command \"& {$modulePath=[Environment]::GetEnvironmentVariable('PSModulePath','Machine');$pathsToRemove=@('C:\\Program Files\\WindowsPowerShell\\Modules\\','C:\\Program Files\\WindowsPowerShell\\Modules');if ($modulePath) {$paths=@();$newModulePath='';foreach ($path in $modulePath.Split(';')){$path=$path.Trim('\\');if (!$paths.Contains($path)){if (!$pathsToRemove.Contains($path)) { $paths+=$path;$newModulePath+=$path;$newModulePath+='\\;';} }}[Environment]::SetEnvironmentVariable('PSModulePath',$newModulePath.Trim(';'),'Machine' );}}\""
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_app_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-0/extensions/ConfigureSPWebServer'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_web_0_name'), '/', parameters('extensions_ConfigureSPWebServer_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/PrepareSharePointServerHA.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA",
+                    "properties": {
+                        "DNSServer": "10.0.0.4",
+                        "DomainName": "bsw.com"
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-0/extensions/FixPSModulePathIssue'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_web_0_name'), '/', parameters('extensions_FixPSModulePathIssue_name_2'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.8",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted  -Command \"& {$modulePath=[Environment]::GetEnvironmentVariable('PSModulePath','Machine');$pathsToRemove=@('C:\\Program Files\\WindowsPowerShell\\Modules\\','C:\\Program Files\\WindowsPowerShell\\Modules');if ($modulePath) {$paths=@();$newModulePath='';foreach ($path in $modulePath.Split(';')){$path=$path.Trim('\\');if (!$paths.Contains($path)){if (!$pathsToRemove.Contains($path)) { $paths+=$path;$newModulePath+=$path;$newModulePath+='\\;';} }}[Environment]::SetEnvironmentVariable('PSModulePath',$newModulePath.Trim(';'),'Machine' );}}\""
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-1/extensions/ConfigureSPWebServer'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_web_1_name'), '/', parameters('extensions_ConfigureSPWebServer_name_1'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/PrepareSharePointServerHA.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA",
+                    "properties": {
+                        "DNSServer": "10.0.0.4",
+                        "DomainName": "bsw.com"
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sps-web-1/extensions/FixPSModulePathIssue'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sps_web_1_name'), '/', parameters('extensions_FixPSModulePathIssue_name_3'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.8",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted  -Command \"& {$modulePath=[Environment]::GetEnvironmentVariable('PSModulePath','Machine');$pathsToRemove=@('C:\\Program Files\\WindowsPowerShell\\Modules\\','C:\\Program Files\\WindowsPowerShell\\Modules');if ($modulePath) {$paths=@();$newModulePath='';foreach ($path in $modulePath.Split(';')){$path=$path.Trim('\\');if (!$paths.Contains($path)){if (!$pathsToRemove.Contains($path)) { $paths+=$path;$newModulePath+=$path;$newModulePath+='\\;';} }}[Environment]::SetEnvironmentVariable('PSModulePath',$newModulePath.Trim(';'),'Machine' );}}\""
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sps_web_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-0/extensions/SQLAOSetup'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sql_0_name'), '/', parameters('extensions_SQLAOSetup_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/ConfigureAlwaysOnSqlServer.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "ConfigureAlwaysOnSqlServer.ps1\\ConfigureAlwaysOnSqlServer",
+                    "properties": {
+                        "domainName": "bsw.com",
+                        "sqlAlwaysOnEndpointName": "spsfarm-hadr",
+                        "adminCreds": {
+                            "userName": "tgs_admin",
+                            "password": "privateSettingsRef:AdminPassword"
+                        },
+                        "sqlServiceCreds": {
+                            "userName": "sqlservice",
+                            "password": "privateSettingsRef:SqlServerServiceAccountPassword"
+                        },
+                        "sharePointSetupUserAccountcreds": {
+                            "userName": "sp_setup",
+                            "password": "privateSettingsRef:SharePointSetupUserAccountPassword"
+                        }
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-1/extensions/CreateCluster'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sql_1_name'), '/', parameters('extensions_CreateCluster_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/ConfigureFailoverCluster.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "ConfigureFailoverCluster.ps1\\ConfigureFailoverCluster",
+                    "properties": {
+                        "domainName": "bsw.com",
+                        "clusterName": "spsfarm-fc",
+                        "sharePath": "\\\\sql-w\\spsfarm-fsw",
+                        "nodes": [
+                            "sql-0",
+                            "sql-1"
+                        ],
+                        "sqlAlwaysOnEndpointName": "spsfarm-hadr",
+                        "sqlAlwaysOnAvailabilityGroupName": "spsfarm-ag",
+                        "sqlAlwaysOnAvailabilityGroupListenerName": "spsfarmag-listener",
+                        "databaseNames": null,
+                        "lbName": "sqlLoadBalancer",
+                        "lbAddress": "10.0.0.6",
+                        "primaryReplica": "sql-1",
+                        "secondaryReplica": "sql-0",
+                        "dnsServerName": "ad-pdc",
+                        "adminCreds": {
+                            "userName": "tgs_admin",
+                            "password": "privateSettingsRef:adminPassword"
+                        },
+                        "sqlServiceCreds": {
+                            "userName": "sqlservice",
+                            "password": "privateSettingsRef:sqlServerServiceAccountPassword"
+                        },
+                        "sharePointSetupUserAccountcreds": {
+                            "userName": "sp_setup",
+                            "password": "privateSettingsRef:sharePointSetupUserAccountPassword"
+                        }
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_1_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Compute/virtualMachines/sql-w/extensions/CreateFileShareWitness'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_sql_w_name'), '/', parameters('extensions_CreateFileShareWitness_name'))]",
+            "apiVersion": "2017-12-01",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Powershell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.24",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "modulesURL": "https://sdaviesms.blob.core.windows.net/marketplaceprod/dscv2/ConfigureFileShareWitness.ps1.zip",
+                    "wmfVersion": "4.0",
+                    "configurationFunction": "ConfigureFileShareWitness.ps1\\ConfigureFileShareWitness",
+                    "properties": {
+                        "domainName": "bsw.com",
+                        "adminCreds": {
+                            "userName": "tgs_admin",
+                            "password": "privateSettingsRef:adminPassword"
+                        }
+                    }
+                },
+                "protectedSettings": {}
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_sql_w_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/rdpLoadBalancer/inboundNatRules/RDP'.",
+            "type": "Microsoft.Network/loadBalancers/inboundNatRules",
+            "name": "[concat(parameters('loadBalancers_rdpLoadBalancer_name'), '/', parameters('inboundNatRules_RDP_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "frontendIPConfiguration": {
+                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_rdpLoadBalancer_name')), concat('/frontendIPConfigurations/rdpLBFE'))]"
+                },
+                "frontendPort": 3389,
+                "backendPort": 3389,
+                "enableFloatingIP": false,
+                "idleTimeoutInMinutes": 4,
+                "protocol": "Tcp"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_rdpLoadBalancer_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/loadBalancers/spCALoadBalancer/inboundNatRules/spCANAT'.",
+            "type": "Microsoft.Network/loadBalancers/inboundNatRules",
+            "name": "[concat(parameters('loadBalancers_spCALoadBalancer_name'), '/', parameters('inboundNatRules_spCANAT_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "frontendIPConfiguration": {
+                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spCALoadBalancer_name')), '/frontendIPConfigurations/spCALBFE')]"
+                },
+                "frontendPort": 80,
+                "backendPort": 80,
+                "enableFloatingIP": false,
+                "idleTimeoutInMinutes": 4,
+                "protocol": "Tcp"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_spCALoadBalancer_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/virtualNetworks/spfarmvnet/subnets/staticSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_spfarmvnet_name'), '/', parameters('subnets_staticSubnet_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_spfarmvnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/virtualNetworks/spfarmvnet/subnets/sqlSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_spfarmvnet_name'), '/', parameters('subnets_sqlSubnet_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.1.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_spfarmvnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/virtualNetworks/spfarmvnet/subnets/spWebSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_spfarmvnet_name'), '/', parameters('subnets_spWebSubnet_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.2.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_spfarmvnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2246ba00-046b-4dfd-b5a4-a584741dfa60/resourceGroups/sps_farm/providers/Microsoft.Network/virtualNetworks/spfarmvnet/subnets/spAppSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_spfarmvnet_name'), '/', parameters('subnets_spAppSubnet_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.3.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_spfarmvnet_name'))]"
+            ]
+        }
+    ]
+}
